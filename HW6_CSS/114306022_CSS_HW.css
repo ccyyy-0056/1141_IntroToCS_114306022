@@ -1,0 +1,213 @@
+/* ------------------------------
+   基本設定（全域）
+------------------------------*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #f3f2e9;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* ------------------------------
+   主容器：左右兩欄
+------------------------------*/
+.main-container {
+    width: 1000px;
+    display: flex;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+/* ------------------------------
+   左側區域（個人資訊）
+------------------------------*/
+.left-panel {
+    width: 30%;
+    background-color: #b7bac6;
+    padding: 20px;
+}
+
+.photo-panel img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.name {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.school {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.about_me {
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;   /* ← 底線 */
+    padding-bottom: 4px;             /* 與文字間隔 */
+    margin-bottom: 10px;
+}
+
+.contact {
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+}
+
+.text_about_me,
+.text_contact {
+    font-size: 15px;
+}
+
+.text-content img {
+    width: 80px;
+    margin-top: 20px;
+}
+
+/* ------------------------------
+   右側區域（Education / Skills / HW / Lab / Music）
+------------------------------*/
+.right-panel {
+    width: 70%;
+    padding: 24px;
+}
+
+.section {
+    margin-bottom: 28px;
+}
+
+/* 標題樣式 */
+.section-title {
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+}
+
+/* ------------------------------
+   Education：每筆資料一行（year + description）
+------------------------------*/
+.edu-item {
+    margin-bottom: 6px;
+}
+
+.year {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #f2f6ff;      /* 淡藍色 */
+    border: 1px solid #d2dbff;      /* 淺藍邊框 */
+    border-radius: 999px;           /* 膠囊造型 */
+    margin-right: 10px;             /* 左右距離 */
+    margin-top: 10px;               /* 與底線分開 */
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+
+/* ------------------------------
+   Homework & Lab：雙卡片兩欄
+------------------------------*/
+.hw_lab_container {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.homework,
+.lab {
+    width: 50%;
+    background-color: #f6f6f6;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.homework_title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 14px;      /* 標題和列表距離更明顯 */
+}
+
+
+/* ul 樣式 */
+.link_homework,
+.link_lab {
+    list-style: disc;           /* 顯示黑點 */
+    padding-left: 26px;         /* 更像老師的縮排 */
+    margin: 0;
+}
+
+.link_homework li,
+.link_lab li {
+    margin-bottom: 6px;         /* 每行間距 */
+    line-height: 1.5;           /* 看起來更整齊 */
+}
+
+/* 連結樣式 */
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: #555;
+    text-decoration: underline;
+}
+
+/* ------------------------------
+   Favorite Music 區塊
+------------------------------*/
+.music_icon {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;           /* 靠近標題 */
+}
+
+
+.music_icon a {
+    text-align: center;
+    width: 22%;
+    font-size: 14px;
+}
+
+.music_icon {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;   
+}
+
+
+.music-note {
+    font-size: 14px;
+    color: #666;
+    margin-top: 12px;
+}
+
+.music {
+    margin-bottom: 10px;
+}
