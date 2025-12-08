@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>114306022_Number Guessing Game</title>
+</head>
+
+<body>
+    <h1 style="display: flex;align-items: center;justify-content: center;">StudentID_Number Guessing Game</h1><br>
+    <div id="image" style="display: flex;align-items: center;justify-content: center;"></div>
+</body>
+
+<script>
+    //TTC = test time count, low下界 high上界
+    var low = 1
+    var high = 100
+    var TTC = 7; 
+    var answer = Math.floor(Math.random() * 100) + 1;
+    var imgDiv = document.getElementById("image");
+
+    while(TTC>0){
+        console.log("現在輸入是：", input, "現在 low =", low, "high =", high, "TTC =", TTC, "answer =", answer);
+
+        var input = window.prompt("請輸入"+low+"~"+high+"之間的整數，\n你還有"+TTC+"次機會。")
+
+        if (input === null) break;
+
+        input = input.trim();
+        
+        if (input>100||input<1){
+            alert("請輸入1~100內的數字!");
+            continue;
+        }
+        if (input>1&input<100){
+            alert("請輸入"+low+"~"+high+"之間的整數!");
+            continue;
+        }
+        if (input === "" || isNaN(input)){
+            alert("請輸入"+low+"~"+high+"之間的整數!");
+            continue;
+        }
+        //下方才是三一律
+        if (input>answer){
+            TTC -=1
+            high = input;
+        }
+        if (input<answer){
+            TTC -=1
+            low = input;
+        }
+        if (input===answer){
+            alert("恭喜答對! 答案是"+answer+"!");
+            imgDiv.innerHTML = '<img src="image/correct.jpg" alt="correct image">';
+            break;
+        }
+    }
+    
+    if(TTC==0){
+        alert("次數用完，本次答案是: "+answer+"。");
+        imgDiv.innerHTML = '<img src="image/wrong.jpg" alt="wrong image">';
+    }
+
+</script>
+
+</html>
