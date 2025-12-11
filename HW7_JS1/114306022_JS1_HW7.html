@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>114306022_HW7_1A2B</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;                
+            display: flex;                    
+            justify-content: center;         
+            align-items: center;              
+            background-color: #f5f5f5;      
+            font-family: Arial, "Microsoft JhengHei", sans-serif;
+        }
+
+        /* 中央的卡片區域 */
+        .game-card {
+            background-color: #ffffff;
+            padding: 24px 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;               
+            width: 320px;                     
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        /* 輸入框 */
+        #userInput {
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* 按鈕 */
+        #guessBtn {
+            margin-top: 4px;
+            padding: 8px 16px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* 按鈕的顏色效果（簡單一點） */
+        #guessBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #guessBtn:hover {
+            background-color: #45a049;
+        }
+
+        /* 紀錄區 */
+        #record {
+            margin-top: 16px;
+            text-align: left;         
+            font-size: 14px;
+            max-height: 200px;
+            overflow-y: auto;          
+        }
+    </style>
+</head>
+<body>
+    <div class="game-card">
+        <h1>114306022_HW7_1A2B</h1>
+
+        <input
+            type="text"
+            id="userInput"
+            maxlength="4"
+            placeholder="請輸入四位不重複數字"
+        >
+        <button id="guessBtn" onclick="play()">Guess!</button>
+
+        <div id="record"></div>
+    </div>
+
+    <script>
+        // 全域變數：答案與次數
+        let answer = generateAnswer();  
+        let count = 0;                
+
+        console.log("答案（測試用）:", answer); 
+
+       
+        function generateAnswer() {
+            let pool = [0,1,2,3,4,5,6,7,8,9];
+            const answerArray = [];
+
+            for (let i = 0; i < 4; i++) {
+                let index = Math.floor(Math.random() * pool.length); 
+                let digit = pool[index];         
+                answerArray.push(digit);         
+                pool.splice(index, 1);           
+            }
+
+            return answerArray.join("");        
+        }
+
+        // 每次按下 Guess! 按鈕會呼叫這個函式
+        function play() {
+            let inputField = document.getElementById("userInput");
+            let guess = inputField.value.trim(); 
+
+            // 檢查輸入是否合法
+            if (!isValid(guess)) {
+                alert("輸入錯誤：必須是四位不重複的數字。");
+                return; 
+            }
+
+            count++;
+
+            // 計算 A/B 結果（呼叫 checkAB）
+            let result = checkAB(guess, answer); 
+
+            // 顯示在紀錄區
+            let recordDiv = document.getElementById("record");
+            recordDiv.innerHTML += count + ". " + guess + " → " + result + "<br>";
+
+            // 判斷是否猜中（4A0B）
+            let A = parseInt(result[0], 10);
+            if (A === 4) {
+                alert("恭喜！你猜對了！總共猜了 " + count + " 次。");
+                 answer = generateAnswer();
+                 count = 0;
+                 recordDiv.innerHTML = "";
+            }
+            // 清空輸入框
+            inputField.value = "";
+            inputField.focus();
+        }
+
+
+        function isValid(str) {
+            // 1. 長度必須是 4
+            if (str.length !== 4) {
+                return false;
+            }
+
+            // 2. 必須全部是數字（0~9）
+            if (isNaN(str)) {
+                return false;
+            }
+
+            // 3. 檢查是否有重複
+            let arr = str.split("");        
+            let set = new Set(arr);        
+            if (set.size !== 4) {          
+                return false;
+            }
+
+            return true; // 通過所有檢查才合法
+        }
+
+        // 計算幾 A 幾 B：
+        // A：數字正確且位置正確
+        // B：數字存在於答案中但位置不同
+        // 回傳格式："xAyB" 例如 "2A1B"
+        function checkAB(guess, ans) {
+            let A = 0;
+            let B = 0;
+
+            let gArr = guess.toString().split("");
+            let aArr = ans.toString().split("");
+
+            for (let i = 0; i < 4; i++) {
+                if (gArr[i] === aArr[i]) {
+                    A++;
+                } else if (aArr.includes(gArr[i])) {
+                    B++;
+                }
+            }
+
+            return A + "A" + B + "B";
+        }
+
+        // 讓使用者在輸入框按 Enter 也可以猜
+        document.getElementById("userInput").addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                play();
+            }
+        });
+    </script>
+</body>
+</html>
