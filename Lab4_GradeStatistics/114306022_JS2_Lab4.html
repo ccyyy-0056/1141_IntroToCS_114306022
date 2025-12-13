@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grade Statistics</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="card">
+      <h1>Grade Statistics</h1>
+
+      <div class="controls">
+        <input id="mathInput" type="number" inputmode="numeric" min="0" max="100" placeholder="Math" />
+        <input id="engInput" type="number" inputmode="numeric" min="0" max="100" placeholder="English" />
+        <button id="submitBtn" type="button">Submit</button>
+      </div>
+
+      <p id="errorMsg" class="error" aria-live="polite"></p>
+
+      <div class="tableWrap">
+        <table id="gradeTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Math</th>
+              <th>English</th>
+              <th>Average</th>
+            </tr>
+          </thead>
+
+          <tbody id="tableBody">
+            <!-- rows will be appended here -->
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <th>Average</th>
+              <th id="mathAvg">0.00</th>
+              <th id="engAvg">0.00</th>
+              <th id="overallAvg">0.00</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
